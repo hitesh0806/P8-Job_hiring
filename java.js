@@ -1,9 +1,11 @@
 
 let i;
-const user_data=[];
+let locstor;
+let locstor_getitem=JSON.parse(localStorage.getItem('profiles'));
 let boards=document.querySelector('#boards');
 let job_experience=document.querySelector('#job-experience');
 let content=document.querySelector('#content')
+let content_2=document.querySelector('#content_2')
 function e_10()
 {
   boards.innerHTML=`
@@ -54,7 +56,7 @@ function experienced()
 }
 function create()
 {
-    
+    locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
           const inputelement_1=document.querySelector('#name');
           const inputelement_2=document.querySelector('#number');
           const inputelement_3=document.querySelector('#address');
@@ -65,7 +67,7 @@ function create()
           const inputvalue_3=inputelement_3.value;
           const inputvalue_4=inputelement_4.value;
           const inputvalue_5=inputelement_5.value;
-          user_data.push({
+          locstor_getitem.push({
             name_:inputvalue_1,
             number:inputvalue_2,
             adddress:inputvalue_3,
@@ -73,26 +75,27 @@ function create()
             password:inputvalue_5,
 
           });
-          console.log(user_data);
+          console.log(locstor_getitem);
           let divcontent='';
-          for(i=0; i<user_data.length; i++)
+          for(i=0; i<locstor_getitem.length; i++)
         {
-            const {name_,number,adddress,e_mail,password}=user_data[i];
+            const {name_,number,adddress,e_mail,password}=locstor_getitem[i];
             const html=`
             <p>${name_}</p><p>${number}</p><p>${adddress}</p><p>${e_mail}</p><p>${password}</p>
             `;
             divcontent+=html;
-            profiles[i]=user_data[i];
         }
+        locstor=localStorage.setItem('profiles',JSON.stringify(locstor_getitem));
           console.log(divcontent);
       alert('profile created!!!');
 }
 function viewprofile()
-{
+{ 
+  locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
   let profile=``;
   let totprofiles='';
   content.innerHTML='';
-    for(i=0; i<user_data.length; i++)
+    for(i=0; i<locstor_getitem.length; i++)
   {
     profile=`
     <button onclick="showprofile(${i})">Profile ${i+1}</button><br><br>
@@ -100,19 +103,39 @@ function viewprofile()
     totprofiles+=profile;
   }
    content.innerHTML=totprofiles+`<button onclick="back_1()">Back</button>`;
+   console.log(locstor_getitem)
 }
 function showprofile(i)
 {
-    const {name_,number,adddress,e_mail,password}=user_data[i];
+    locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
+    const {name_,number,adddress,e_mail,password}=locstor_getitem[i];
     content.innerHTML=`
     <p>${name_}</p>
     <p>${number}</p>
     <p>${adddress}</p>
     <p>${e_mail}</p>
     <p>${password}</p><br>
-    <button onclick="back_2()">Back</button>
+    <button onclick="back_1()">Back</button>
     `;
 }
+function login()
+{ 
+  locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
+  let x=document.getElementById('name_1');
+  let y=document.getElementById('password_1');
+  const x_value=x.value;
+  const y_value=y.value;
+  for(i=0;i<locstor_getitem.length;i++)
+  {
+  if(x_value===locstor_getitem[i].name_ && y_value===locstor_getitem[i].password)
+  {
+    window.location.href='index-2.html';
+    break;
+  }
+  }
+}
+
+
 function createprofile()
 {
     window.location.href='index-1.html';
@@ -121,13 +144,17 @@ function next()
 {
     window.location.href='index-1-2.html';
 }
+function backtologin()
+{
+    window.location.href='index.html';
+}
 function back_1()
 {
     window.location.href='index-1.html';
 }
 function back_2()
 {
-    window.location.href='index-1.html';
+    window.location.href='';
 }
 
     
