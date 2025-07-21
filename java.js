@@ -1,14 +1,13 @@
 
 let i;
 let edu_qul_1, exp;
-let locstor;
 let locstor_getitem=JSON.parse(localStorage.getItem('profiles'));
 let boards=document.querySelector('#boards');
 let job_experience=document.querySelector('#job-experience-1');
 let content=document.querySelector('#content');
 let content_2=document.querySelector('#content_2');
 
-const edu_details=JSON.parse(localStorage.getItem('education_details'))||
+/*const edu_details=JSON.parse(localStorage.getItem('education_details'))||
 {
  educational_qualification:'',
  board_10_value:'',
@@ -17,7 +16,7 @@ const edu_details=JSON.parse(localStorage.getItem('education_details'))||
  pg_value:'',
  place_of_study:'',
  experience:'',
-}
+}*/
 
 function e_qul(e)
 {
@@ -66,21 +65,42 @@ function e_qul(e)
 }
 function create_1()
 {
+  locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
 let board_1=document.getElementById('board_10');
 let board_2=document.getElementById('board_12');
 let board_3=document.getElementById('board_uni_ug');
 let board_4=document.getElementById('board_uni_pg');
 let p_o_s=document.getElementById('placeofstudy');
 
-  edu_details.educational_qualification = edu_qul_1 ? edu_qul_1 : '';
-  edu_details.board_10_value = board_1 ? board_1.value : '';
-  edu_details.board_12_value = board_2 ? board_2.value : '';
-  edu_details.ug_value = board_3 ? board_3.value : '';
-  edu_details.pg_value = board_4 ? board_4.value : '';  
-  edu_details.place_of_study = p_o_s ? p_o_s.value : '';
-  edu_details.experience = exp ? exp : '';
-console.log(edu_details);
-localStorage.setItem('education_details',JSON.stringify(edu_details))
+const educational_qualification = edu_qul_1 ? edu_qul_1 : '';
+const board_10_value = board_1 ? board_1.value : '';
+const board_12_value = board_2 ? board_2.value : '';
+const ug_value = board_3 ? board_3.value : '';
+const pg_value = board_4 ? board_4.value : '';  
+const place_of_study = p_o_s ? p_o_s.value : '';
+const experience = exp ? exp : '';
+
+ if (locstor_getitem.length > 0) {
+    const lastIndex = locstor_getitem.length - 1;
+    locstor_getitem[lastIndex].educational_qualification = educational_qualification;
+    locstor_getitem[lastIndex].board_10_value = board_10_value;
+    locstor_getitem[lastIndex].board_12_value = board_12_value;
+    locstor_getitem[lastIndex].ug_value = ug_value;
+    locstor_getitem[lastIndex].pg_value = pg_value;
+    locstor_getitem[lastIndex].place_of_study = place_of_study;
+    locstor_getitem[lastIndex].experience = experience;
+  }
+          let divcontent='';
+for(i=0; i<locstor_getitem.length; i++)
+        {
+            const {educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience}=locstor_getitem[i];
+            const html=`
+            <p>${educational_qualification}</p><p>${board_10_value}</p><p>${board_12_value}</p><p>${ug_value}</p><p>${pg_value}</p><p>${place_of_study}</p><p>${experience}</p>
+            `;
+            divcontent+=html;
+        }
+localStorage.setItem('profiles',JSON.stringify(locstor_getitem));
+console.log(locstor_getitem)
 }
 function experience(e)
 {  
@@ -133,7 +153,7 @@ function create()
           locstor_getitem.push({
             name_:inputvalue_1,
             number:inputvalue_2,
-            adddress:inputvalue_3,
+            address:inputvalue_3,
             e_mail:inputvalue_4,
             password:inputvalue_5,
 
@@ -142,14 +162,14 @@ function create()
           let divcontent='';
           for(i=0; i<locstor_getitem.length; i++)
         {
-            const {name_,number,adddress,e_mail,password}=locstor_getitem[i];
+            const {name_,number,address,e_mail,password}=locstor_getitem[i];
             const html=`
-            <p>${name_}</p><p>${number}</p><p>${adddress}</p><p>${e_mail}</p><p>${password}</p>
+            <p>${name_}</p><p>${number}</p><p>${address}</p><p>${e_mail}</p><p>${password}</p>
             `;
             divcontent+=html;
         }
-        locstor=localStorage.setItem('profiles',JSON.stringify(locstor_getitem));
-          console.log(divcontent);
+        localStorage.setItem('profiles',JSON.stringify(locstor_getitem));
+        console.log(locstor_getitem);
       alert('profile created!!!');
 }
 function viewprofile()
@@ -171,11 +191,11 @@ function viewprofile()
 function showprofile(i)
 {
     locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
-    const {name_,number,adddress,e_mail,password}=locstor_getitem[i];
+    const {name_,number,address,e_mail,password}=locstor_getitem[i];
     content.innerHTML=`
     <p>${name_}</p>
     <p>${number}</p>
-    <p>${adddress}</p>
+    <p>${address}</p>
     <p>${e_mail}</p>
     <p>${password}</p><br>
     <button onclick="back_1()">Back</button>
