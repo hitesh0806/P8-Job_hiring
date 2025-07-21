@@ -5,16 +5,18 @@ let locstor;
 let locstor_getitem=JSON.parse(localStorage.getItem('profiles'));
 let boards=document.querySelector('#boards');
 let job_experience=document.querySelector('#job-experience-1');
-let content=document.querySelector('#content')
-let content_2=document.querySelector('#content_2')
+let content=document.querySelector('#content');
+let content_2=document.querySelector('#content_2');
 
-
-let edu_details={
- board_1_value:'',
- board_2_value:'',
- board_3_value:'',
- board_4_value:'',
+const edu_details=JSON.parse(localStorage.getItem('education_details'))||
+{
+ educational_qualification:'',
+ board_10_value:'',
+ board_12_value:'',
+ ug_value:'',
+ pg_value:'',
  place_of_study:'',
+ experience:'',
 }
 
 function e_qul(e)
@@ -60,7 +62,7 @@ function e_qul(e)
   edu_qul_1='PG';
   }
   document.getElementById('eduqul').textContent=edu_qul_1;
-  console.log(edu_details)
+  return edu_qul_1;
 }
 function create_1()
 {
@@ -69,12 +71,16 @@ let board_2=document.getElementById('board_12');
 let board_3=document.getElementById('board_uni_ug');
 let board_4=document.getElementById('board_uni_pg');
 let p_o_s=document.getElementById('placeofstudy');
-  edu_details.board_1_value = board_1 ? board_1.value : '';
-  edu_details.board_2_value = board_2 ? board_2.value : '';
-  edu_details.board_3_value = board_3 ? board_3.value : '';
-  edu_details.board_4_value = board_4 ? board_4.value : '';  
+
+  edu_details.educational_qualification = edu_qul_1 ? edu_qul_1 : '';
+  edu_details.board_10_value = board_1 ? board_1.value : '';
+  edu_details.board_12_value = board_2 ? board_2.value : '';
+  edu_details.ug_value = board_3 ? board_3.value : '';
+  edu_details.pg_value = board_4 ? board_4.value : '';  
   edu_details.place_of_study = p_o_s ? p_o_s.value : '';
+  edu_details.experience = exp ? exp : '';
 console.log(edu_details);
+localStorage.setItem('education_details',JSON.stringify(edu_details))
 }
 function experience(e)
 {  
@@ -96,7 +102,7 @@ function experience(e)
     <p id="job-experience-2"></p>
     `;
   document.getElementById('job-experience-2').textContent=exp;
-  console.log(edu_details)
+  return exp;
 }
 function years(y){
   if(y==='_2__'){
@@ -109,7 +115,7 @@ function years(y){
       exp='5+';
   }
   document.getElementById('job-experience-2').textContent=exp;
-  console.log(edu_details)
+  return exp;
 }
 function create()
 {
@@ -182,16 +188,25 @@ function login()
   let y=document.getElementById('password_1');
   const x_value=x.value;
   const y_value=y.value;
+  let found=false;
   for(i=0;i<locstor_getitem.length;i++)
   {
   if(x_value===locstor_getitem[i].name_ && y_value===locstor_getitem[i].password)
   {
+    localStorage.setItem('logged_in_name', x_value);
     window.location.href='index-1-2.html';
+    found=true;
     break;
   }
   }
+  if(!found){
+    alert('Wrong username or password');
+  }
 }
 
+window.onload=function(){
+  document.querySelector('#hello').innerHTML=`<h1>Hello, ${localStorage.getItem('logged_in_name')||''}</h1>`;
+}
 
 function createprofile()
 {

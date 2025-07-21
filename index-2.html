@@ -2,6 +2,13 @@
 <html>
     <head></head>
     <body>
-        <h1>Heyyy!!!!,,,,you're in the right place!!!</h1>
+        <div id="content_2">
+            
+        </div>
     </body>
+    <script>
+        window.onload=function(){
+        content_2.innerHTML=`<div>heyy!!${JSON.stringify(localStorage.getItem('education_details'))}</div>`;
+        }
+    </script>
 </html>
