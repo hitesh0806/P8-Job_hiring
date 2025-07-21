@@ -214,7 +214,7 @@ function login()
   if(x_value===locstor_getitem[i].name_ && y_value===locstor_getitem[i].password)
   {
     localStorage.setItem('logged_in_name', x_value);
-    window.location.href='index-1-2.html';
+    window.location.href='index-2.html';
     found=true;
     break;
   }
@@ -234,17 +234,17 @@ function createprofile()
 }
 function next()
 {
-  window.location.href='index-2.html';
+  window.location.href='';
 }
-function backtologin()
+function next_1()
 {
-  window.location.href='index.html';
+  window.location.href='index-1-2.html';
 }
 function back_1()
 {
   window.location.href='index-1.html';
 }
-function back_2()
+function backtologin()
 {
-  window.location.href='';
+  window.location.href='index.html';
 }
