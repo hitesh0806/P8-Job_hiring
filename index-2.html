@@ -2,13 +2,26 @@
 <html>
     <head></head>
     <body>
-        <div id="content_2">
-            
-        </div>
+        <div id="content_2"></div>
     </body>
     <script>
-        window.onload=function(){
-        content_2.innerHTML=`<div>heyy!!${JSON.stringify(localStorage.getItem('profiles'))}</div>`;
-        }
+  window.onload=function(){
+        let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details'));
+        document.querySelector('#content_2').innerHTML=
+        `<h2>Hello ${locstor_getitem_1.name_}, u've come this far, u're doing correct, wait for me to update further</h2>
+        <h4>Name: ${locstor_getitem_1.name_}</h4>
+        <h4>Phone no.: ${locstor_getitem_1.number}</h4>
+        <h4 style:"font-style:bold">Address: ${locstor_getitem_1.address}</h4>
+        <h4>E-mail: ${locstor_getitem_1.e_mail}</h4>
+        <h4>Password: ${locstor_getitem_1.password}</h4><br>
+        <h2>Educational details:-</h2>
+        <h4>Educational qualification: ${locstor_getitem_1.educational_qualification}</h4>
+        <h4>10th board: ${locstor_getitem_1.board_10_value}</h4>
+        <h4>12th board: ${locstor_getitem_1.board_12_value}</h4>
+        <h4>University(UG): ${locstor_getitem_1.ug_value}</h4>
+        <h4>University(PG): ${locstor_getitem_1.pg_value}</h4>
+        <h4>Place of study: ${locstor_getitem_1.place_of_study}</h4>
+        <h4>Experience: ${locstor_getitem_1.experience}</h4>`;
+}
     </script>
 </html>

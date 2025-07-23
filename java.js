@@ -1,7 +1,6 @@
-
 let i;
 let edu_qul_1, exp;
-let locstor_getitem=JSON.parse(localStorage.getItem('profiles'));
+let locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
 let boards=document.querySelector('#boards');
 let job_experience=document.querySelector('#job-experience-1');
 let content=document.querySelector('#content');
@@ -206,6 +205,7 @@ function login()
   locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
   let x=document.getElementById('name_1');
   let y=document.getElementById('password_1');
+  let temp_arr;
   const x_value=x.value;
   const y_value=y.value;
   let found=false;
@@ -213,7 +213,8 @@ function login()
   {
   if(x_value===locstor_getitem[i].name_ && y_value===locstor_getitem[i].password)
   {
-    localStorage.setItem('logged_in_name', x_value);
+    temp_arr=locstor_getitem[i];
+    localStorage.setItem('logged_in_details',JSON.stringify(temp_arr));
     window.location.href='index-2.html';
     found=true;
     break;
@@ -224,9 +225,13 @@ function login()
   }
 }
 
-window.onload=function(){
-  document.querySelector('#hello').innerHTML=`<h1>Hello, ${localStorage.getItem('logged_in_name')||''}</h1>`;
+function remove()
+{
+  localStorage.removeItem('profiles');
+  console.log(locstor_getitem);
 }
+
+
 
 function createprofile()
 {
