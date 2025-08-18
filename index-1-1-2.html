@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <div id="content">
+        <div>
+            <div id="hello"></div>
+            <label>Educational qualification:</label><br>
+            <button id="eduqul-10" onclick="e_qul('_10_')" value="10">10</button>
+            <button id="eduqul-10_2" onclick="e_qul('_10_2_')" value="=10+2">10+2</button>
+            <button id="eduqul-ug" onclick="e_qul('ug')" value="UG">UG</button>
+            <button id="eduqul-pg" onclick="e_qul('pg')" value="PG">PG</button>
+            <p id="eduqul"></p>
+            <div id="boards"></div>
+            <label>Place of study:</label><br>
+            <input id="placeofstudy"><br><br>
+            <label>Experience (In years):</label><br>
+            <button id="intern" onclick="experience('intern')" value="Intern">Intern</button>
+            <button id="fresher" onclick="experience('fresher')" value="Fresher">Fresher</button>
+            <button id="experienced" onclick="experience('experienced')" value="Experienced">Experienced</button>
+            <p></p>
+            <div id="job-experience-1">
+                <p id="job-experience-2"></p>
+            </div>
+            <div id="profiles"></div>
+            <h3>What role are u willing to take</h3>
+            <button onclick="jobrole('Hardwaredev')">Hardware developer</button>
+            <button onclick="jobrole('Softwaredev')">Software developer</button>
+            <button onclick="jobrole('Frontenddev')">Frontend developer</button>
+            <button onclick="jobrole('Backenddev')">Backend developer</button>
+            <button onclick="jobrole('Fullstackdev')">Full stack developer</button>
+            <button onclick="jobrole('Data_analyst')">Data analyst</button>
+            <button onclick="jobrole('Prod_manag')">Product manager</button>
+            <div id="job_roles_view"></div>
+        </div>
+        </div>
+        <button onclick="create_1()">Create</button>
+        <button onclick="backtologin()">Back to login</button>
+    </body>
+    <script src="java.js">
+    </script>
+</html>

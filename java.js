@@ -1,10 +1,9 @@
 let i;
-let edu_qul_1, exp;
+let edu_qul_1, exp, role;
 let locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
 let boards=document.querySelector('#boards');
 let job_experience=document.querySelector('#job-experience-1');
 let content=document.querySelector('#content');
-let content_2=document.querySelector('#content_2');
 
 /*const edu_details=JSON.parse(localStorage.getItem('education_details'))||
 {
@@ -44,7 +43,7 @@ function e_qul(e)
   <label>University/Institution (UG):</label><br>
   <input id="board_uni_ug"><br><br>
   `;
-  edu_qul_1='PG';
+  edu_qul_1='UG';
   }
   else if(e==='pg'){
   boards.innerHTML=`
@@ -78,6 +77,7 @@ const ug_value = board_3 ? board_3.value : '';
 const pg_value = board_4 ? board_4.value : '';  
 const place_of_study = p_o_s ? p_o_s.value : '';
 const experience = exp ? exp : '';
+const Role = role ? role : '';
 
  if (locstor_getitem.length > 0) {
     const lastIndex = locstor_getitem.length - 1;
@@ -88,13 +88,14 @@ const experience = exp ? exp : '';
     locstor_getitem[lastIndex].pg_value = pg_value;
     locstor_getitem[lastIndex].place_of_study = place_of_study;
     locstor_getitem[lastIndex].experience = experience;
+    locstor_getitem[lastIndex].Job_role = Role;
   }
           let divcontent='';
 for(i=0; i<locstor_getitem.length; i++)
         {
-            const {educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience}=locstor_getitem[i];
+            const {educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role}=locstor_getitem[i];
             const html=`
-            <p>${educational_qualification}</p><p>${board_10_value}</p><p>${board_12_value}</p><p>${ug_value}</p><p>${pg_value}</p><p>${place_of_study}</p><p>${experience}</p>
+            <p>${educational_qualification}</p><p>${board_10_value}</p><p>${board_12_value}</p><p>${ug_value}</p><p>${pg_value}</p><p>${place_of_study}</p><p>${experience}</p><p>${Job_role}</p>
             `;
             divcontent+=html;
         }
@@ -135,6 +136,39 @@ function years(y){
   }
   document.getElementById('job-experience-2').textContent=exp;
   return exp;
+}
+function jobrole(r)
+{
+  if(r==='Hardwaredev')
+  {
+    role='Hardware developer';
+  }
+  else if(r==='Softwaredev')
+  {
+    role='Software developer';
+  }
+  else if(r==='Frontenddev')
+  {
+    role='frontend developer';
+  }
+  else if(r==='Backenddev')
+  {
+    role='Backend developer';
+  }
+  else if(r==='Fullstackdev')
+  {
+    role='Full stack developer';
+  }
+  else if(r==='Data_analyst')
+  {
+    role='Data analyst';
+  }
+  else if(r==='Prod_manag')
+  {
+    role='Product manager';
+  }
+  document.querySelector('#job_roles_view').innerHTML=`<p>${role}</p>`;
+  return role;
 }
 function create()
 {
@@ -215,7 +249,7 @@ function login()
   {
     temp_arr=locstor_getitem[i];
     localStorage.setItem('logged_in_details',JSON.stringify(temp_arr));
-    window.location.href='index-2.html';
+    window.location.href='index-1-2.html';
     found=true;
     break;
   }
@@ -235,7 +269,7 @@ function remove()
 
 function createprofile()
 {
-  window.location.href='index-1.html';
+  window.location.href='index-1-1-1.html';
 }
 function next()
 {
@@ -243,13 +277,13 @@ function next()
 }
 function next_1()
 {
-  window.location.href='index-1-2.html';
+  window.location.href='index-1-1-2.html';
 }
 function back_1()
 {
-  window.location.href='index-1.html';
+  window.location.href='index-1-1-1.html';
 }
 function backtologin()
 {
-  window.location.href='index.html';
+  window.location.href='index-1-1.html';
 }

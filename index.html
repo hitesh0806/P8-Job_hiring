@@ -5,17 +5,13 @@
     </head>
     <body>
         <div id="content_1">
-            <label>Name:</label><br>
-            <input id="name_1" placeholder="Enter your name"><br><br>
-            <label>Password:</label><br>
-            <input id="password_1" placeholder="Enter your password"><br><br>
-            <button onclick="login()">Login</button><br><br>
-            <button onclick="createprofile()">Create a profile</button>
-            <button onclick="remove()">Delete Existing profiles</button>
-            <!--button onclick="viewprofile()">View</button><br><br-->
+            <label>Are you an employee or employer:</label><br>
+            <button onclick="employee()">Employee</button>
+            <button onclick="employer()">Employer</button>
         </div>
     </body>
-    <script src="java.js">
-     
+    <script>
+    employee = () => window.location.href='index-1-1.html';
+    employer = () => window.location.href='index-2-1.html';
     </script>
 </html>

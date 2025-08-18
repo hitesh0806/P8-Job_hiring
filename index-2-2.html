@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id="content_2"></div>
+        <input id="inputbtn">
+        <button onclick="search()">Search</button><br><br>
+        <div id="content_3"></div>
+    </body>
+    <script>
+  window.onload=function(){
+        let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details_2'));
+        document.querySelector('#content_2').innerHTML=
+        `<h2>Hello ${locstor_getitem_1.companyName}, u've come this far, u're doing correct, wait for me to update further</h2>
+        <h4>Company name: ${locstor_getitem_1.companyName}</h4>
+        <h4>Industry: ${locstor_getitem_1.industry}</h4>
+        <h4 style:"font-style:bold">Head quarters: ${locstor_getitem_1.hqAddress}</h4>
+        <h4>Year founded: ${locstor_getitem_1.founded}</h4>
+        <h4>Website: ${locstor_getitem_1.website}</h4><br>
+        <h4>E-mail: ${locstor_getitem_1.contactEmail}</h4>
+        <h4>Contact number: ${locstor_getitem_1.contactPhone}</h4>
+        <h4>Password: ${locstor_getitem_1.Password}</h4>`
+}
+function search()
+{
+    
+    let content_div=document.querySelector('#content_3');
+    let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
+    let x= document.getElementById('inputbtn');
+    let val= x.value;
+    let found=false;
+    let list_1='';
+    let list_2='';
+    for(j=0; j<=locstor_getitem_2.length-1; j++)
+     {
+        if(val===locstor_getitem_2[j].Job_role)
+          {
+            list_1=`<button onclick="viewprofile(${j})">${locstor_getitem_2[j].name_}</button><br><br>`;
+            list_2+=list_1;
+            content_div.innerHTML=list_2;
+            found=true;
+          }
+          
+      }
+        if(!found)
+         {
+            alert('Cannot find');
+         }
+}
+function viewprofile(j)
+{
+    let locstor_getitem_1=JSON.parse(localStorage.getItem('profiles'));
+    const {name_,number,address,e_mail,password,educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role}=locstor_getitem_1[j];
+    document.querySelector('#content_3').innerHTML=`
+      <h4>Name: ${name_}</h4>
+      <h4>Phone no.: ${number}</h4>
+      <h4 style:"font-style:bold">Address: ${address}</h4>
+      <h4>E-mail: ${e_mail}</h4>
+      <h4>Password: ${password}</h4><br>
+      <h2>Educational details:-</h2>
+      <h4>Educational qualification: ${educational_qualification}</h4>
+      <h4>10th board: ${board_10_value}</h4>
+      <h4>12th board: ${board_12_value}</h4>
+      <h4>University(UG): ${ug_value}</h4>
+      <h4>University(PG): ${pg_value}</h4>
+      <h4>Place of study: ${place_of_study}</h4>
+      <h4>Experience: ${experience}</h4>
+      <h4>Job-role: ${Job_role}</h4>`;
+}
+    </script>
+</html>
