@@ -1,33 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <div id="content_2"></div>
-        <button onclick="backtologin()">Back to login</button>
-    </body>
+<head>
+    <title>Profile Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        #content_2 {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 500px;
+            max-width: 90%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        h4 {
+            margin: 6px 0;
+            font-weight: normal;
+            color: #444;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="content_2"></div>
+    <button onclick="backtologin()">Back to login</button>
+
     <script>
-  window.onload=function(){
-        let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details'));
-        document.querySelector('#content_2').innerHTML=
-        `<h2>Hello ${locstor_getitem_1.name_}, u've come this far, u're doing correct, wait for me to update further</h2>
-        <h4>Name: ${locstor_getitem_1.name_}</h4>
-        <h4>Phone no.: ${locstor_getitem_1.number}</h4>
-        <h4 style:"font-style:bold">Address: ${locstor_getitem_1.address}</h4>
-        <h4>E-mail: ${locstor_getitem_1.e_mail}</h4>
-        <h4>Password: ${locstor_getitem_1.password}</h4><br>
-        <h2>Educational details:-</h2>
-        <h4>Educational qualification: ${locstor_getitem_1.educational_qualification}</h4>
-        <h4>10th board: ${locstor_getitem_1.board_10_value}</h4>
-        <h4>12th board: ${locstor_getitem_1.board_12_value}</h4>
-        <h4>University(UG): ${locstor_getitem_1.ug_value}</h4>
-        <h4>University(PG): ${locstor_getitem_1.pg_value}</h4>
-        <h4>Place of study: ${locstor_getitem_1.place_of_study}</h4>
-        <h4>Experience: ${locstor_getitem_1.experience}</h4>
-        <h4>Job-role: ${locstor_getitem_1.Job_role}</h4>`;
-}
-function backtologin()
-{
-  window.location.href='index-1-1.html';
-}
+        window.onload=function(){
+            let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details'));
+            document.querySelector('#content_2').innerHTML=
+            `<h2>Hello ${locstor_getitem_1.name_}, you’ve come this far, you’re doing great! 🚀</h2>
+            <h4><b>Name:</b> ${locstor_getitem_1.name_}</h4>
+            <h4><b>Phone no.:</b> ${locstor_getitem_1.number}</h4>
+            <h4><b>Address:</b> ${locstor_getitem_1.address}</h4>
+            <h4><b>E-mail:</b> ${locstor_getitem_1.e_mail}</h4>
+            <h4><b>Password:</b> ${locstor_getitem_1.password}</h4>
+            <br>
+            <h2>Educational details</h2>
+            <h4><b>Qualification:</b> ${locstor_getitem_1.educational_qualification}</h4>
+            <h4><b>10th board:</b> ${locstor_getitem_1.board_10_value}</h4>
+            <h4><b>12th board:</b> ${locstor_getitem_1.board_12_value}</h4>
+            <h4><b>University (UG):</b> ${locstor_getitem_1.ug_value}</h4>
+            <h4><b>University (PG):</b> ${locstor_getitem_1.pg_value}</h4>
+            <h4><b>Place of study:</b> ${locstor_getitem_1.place_of_study}</h4>
+            <h4><b>Experience:</b> ${locstor_getitem_1.experience}</h4>
+            <h4><b>Job role:</b> ${locstor_getitem_1.Job_role}</h4>`;
+        }
+
+        function backtologin() {
+            window.location.href='index-1-1.html';
+        }
     </script>
+</body>
 </html>

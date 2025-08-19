@@ -1,102 +1,209 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
+<head>
+    <title>Company Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        #container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 600px;
+            margin-top: 40px;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 15px 0 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        #profile_btn {
+            background-color: #007bff;
+            color: white;
+        }
+        #profile_btn:hover {
+            background-color: #0056b3;
+        }
+
+        .search-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .search-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .logout-btn:hover {
+            background-color: #a71d2a;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        #content_2, #content_3 {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        #content_3 button {
+            background-color: #007bff;
+            color: white;
+            width: auto;
+            padding: 8px 16px;
+            margin-top: 8px;
+        }
+
+        #content_3 button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
         <div id="welcomenote"></div>
-        <button onclick="profile()" id="profile_btn">My profile</button><br><br>
+
+        <button onclick="profile()" id="profile_btn">My profile</button>
         <div id="content_2"></div>
-        <label style="font-weight: bold;">What role are you hiring for?</label><br><br>
+
+        <label>What role are you hiring for?</label>
         <input id="inputbtn" placeholder="e.g., frontend, backend, hardware">
-        <button onclick="search()">Search</button><br><br>
+        <button onclick="search()" class="search-btn">Search</button>
+
         <div id="content_3"></div>
-        <button onclick="backtologin()">Log out</button>
-    </body>
-    <script>
-      let main_content= document.querySelector('#content_2');
-      let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details_2'));
-      
-window.onload=function()
-{
-  document.querySelector('#welcomenote').innerHTML=`<h2>Hello ${locstor_getitem_1.companyName}, Ready to hire employees..</h2>`;
-}
-let show=true;
-function profile(){
-  console.log('clicked')
+
+        <button onclick="backtologin()" class="logout-btn">Log out</button>
+    </div>
+
+<script>
+  let main_content = document.querySelector('#content_2');
+  let locstor_getitem_1 = JSON.parse(localStorage.getItem('logged_in_details_2'));
+  
+  window.onload=function() {
+    document.querySelector('#welcomenote').innerHTML=`<h2>👋 Hello ${locstor_getitem_1.companyName}, Ready to hire employees..</h2>`;
+  }
+
+  let show=true;
+  function profile(){
       if(show){
         document.querySelector('#profile_btn').innerHTML='Hide profile';
         main_content.innerHTML=
         `<h4>Company name: ${locstor_getitem_1.companyName}</h4>
         <h4>Industry: ${locstor_getitem_1.industry}</h4>
-        <h4 style:"font-weight:bold">Head quarters: ${locstor_getitem_1.hqAddress}</h4>
+        <h4>Headquarters: ${locstor_getitem_1.hqAddress}</h4>
         <h4>Year founded: ${locstor_getitem_1.founded}</h4>
-        <h4>Website: ${locstor_getitem_1.website}</h4><br>
-        <h4>E-mail: ${locstor_getitem_1.contactEmail}</h4>
+        <h4>Website: ${locstor_getitem_1.website}</h4>
+        <h4>Email: ${locstor_getitem_1.contactEmail}</h4>
         <h4>Contact number: ${locstor_getitem_1.contactPhone}</h4>
         <h4>Password: ${locstor_getitem_1.Password}</h4>`;
         show=false;
       }
-      else
-      {
+      else {
         main_content.innerHTML='';
         document.querySelector('#profile_btn').innerHTML='My profile';
         show=true;
       }
-}
-function search()
-{
-    
-    let content_div=document.querySelector('#content_3');
-    let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
-    let x= document.getElementById('inputbtn');
-    let val= x.value;
-    let k=0;
-    let found=false;
-    let list_1='';
-    let list_2='';
-    for(j=0; j<=locstor_getitem_2.length-1; j++)
-     {
-        if(val===locstor_getitem_2[j].Job_role)
-          {
-            list_1=`<button onclick="viewprofile(${j})">${locstor_getitem_2[j].name_}</button><br><br>`;
-            list_2+=list_1;
-            k++;
-            content_div.innerHTML=`<h3>There are ${k} applicants interested in the ${val} role. Click on their names to view their profiles.<h3>`+list_2;
-            found=true;
+  }
+
+  function search() {
+      let content_div=document.querySelector('#content_3');
+      let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
+      let val=document.getElementById('inputbtn').value;
+      let k=0;
+      let found=false;
+      let list_2='';
+      for(let j=0; j<locstor_getitem_2.length; j++){
+          if(val.toLowerCase() === locstor_getitem_2[j].Job_role.toLowerCase()){
+              list_2+=`<button onclick="viewprofile(${j})">${locstor_getitem_2[j].name_}</button><br>`;
+              k++;
+              found=true;
           }
-          
       }
-        if(!found)
-         {
-            content_div.innerHTML=`<h3>We could not find any applicants for ${val} role.<h3>`+list_2;
-         }
-}
-function viewprofile(j)
-{
-    let locstor_getitem_1=JSON.parse(localStorage.getItem('profiles'));
-    const {name_,number,address,e_mail,password,educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role}=locstor_getitem_1[j];
-    document.querySelector('#content_3').innerHTML=`
-      <h4>Name: ${name_}</h4>
-      <h4>Phone no.: ${number}</h4>
-      <h4 style:"font-style:bold">Address: ${address}</h4>
-      <h4>E-mail: ${e_mail}</h4>
-      <h4>Password: ${password}</h4><br>
-      <h2>Educational details:-</h2>
-      <h4>Educational qualification: ${educational_qualification}</h4>
-      <h4>10th board: ${board_10_value}</h4>
-      <h4>12th board: ${board_12_value}</h4>
-      <h4>University(UG): ${ug_value}</h4>
-      <h4>University(PG): ${pg_value}</h4>
-      <h4>Place of study: ${place_of_study}</h4>
-      <h4>Experience: ${experience}</h4>
-      <h4>Job-role: ${Job_role}</h4>
-      <button onclick='back()'>Back</button><br><br>`;
-}
-function backtologin()
-{
-  window.location.href='index-2-1.html';
-}
-function back(){
-  search();
-}
-    </script>
+      if(found){
+          content_div.innerHTML=`<h3>✅ ${k} applicants found for <b>${val}</b>. Click to view profiles:</h3>`+list_2;
+      } else {
+          content_div.innerHTML=`<h3>❌ No applicants found for <b>${val}</b>.</h3>`;
+      }
+  }
+
+  function viewprofile(j){
+      let locstor_getitem_1=JSON.parse(localStorage.getItem('profiles'));
+      const {name_,number,address,e_mail,password,educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role}=locstor_getitem_1[j];
+      document.querySelector('#content_3').innerHTML=`
+        <h3>Applicant Profile</h3>
+        <h4>Name: ${name_}</h4>
+        <h4>Phone no.: ${number}</h4>
+        <h4>Address: ${address}</h4>
+        <h4>Email: ${e_mail}</h4>
+        <h4>Password: ${password}</h4><br>
+        <h3>Educational details</h3>
+        <h4>Qualification: ${educational_qualification}</h4>
+        <h4>10th board: ${board_10_value}</h4>
+        <h4>12th board: ${board_12_value}</h4>
+        <h4>University (UG): ${ug_value}</h4>
+        <h4>University (PG): ${pg_value}</h4>
+        <h4>Place of study: ${place_of_study}</h4>
+        <h4>Experience: ${experience}</h4>
+        <h4>Job role: ${Job_role}</h4>
+        <button onclick='back()' class="back-btn">Back</button>`;
+  }
+
+  function backtologin(){
+    window.location.href='index-2-1.html';
+  }
+
+  function back(){
+    search();
+  }
+</script>
+</body>
 </html>

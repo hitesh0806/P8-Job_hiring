@@ -2,124 +2,121 @@
 <html>
 <head>
     <title>Company Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: bold;
+            display: block;
+            margin: 12px 0 6px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Red delete / back button style */
+        button:nth-of-type(2) {
+            background-color: #6c757d;
+        }
+        button:nth-of-type(2):hover {
+            background-color: #5a6268;
+        }
+
+        #profiles {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <div id="content">
         <!-- SECTION 1: Basic Company Profile -->
-        <h2>Basic Company Profile</h2>
-        <label>Company Name:</label><br>
-        <input id="companyName" placeholder="Enter company name"><br><br>
-        
-        <label>Industry / Sector:</label><br>
-        <input id="industry" placeholder="Enter industry"><br><br>
-        
-        <label>Headquarters Address:</label><br>
-        <textarea id="hqAddress" placeholder="Enter headquarters address"></textarea><br><br>
-        
-        <label>Year Founded:</label><br>
-        <input id="founded" type="number" placeholder="Enter year founded"><br><br>
-        
-        <!--label>Number of Employees:</label><br>
-        <input id="employees" type="number" placeholder="Enter total employees"><br><br-->
-        
-        <label>Website:</label><br>
-        <input id="website" placeholder="Enter website URL"><br><br>
-        
-        <label>Contact Email:</label><br>
-        <input id="contactEmail" type="email" placeholder="Enter contact email"><br><br>
-        
-        <label>Contact Phone:</label><br>
-        <input id="contactPhone" placeholder="Enter contact phone"><br><br>
-        
-        <label>Password:</label><br>
-        <input id="password" placeholder="Enter password"><br><br>
-        
+        <h2>Company Registration</h2>
 
-        <!-- SECTION 2: Corporate Details >
-        <h2>Corporate Details</h2>
-        <label>Legal Structure:</label><br>
-        <input id="legalStructure" placeholder="Pvt Ltd, LLC, Partnership, etc."><br><br>
-        
-        <label>Registration / Incorporation Number:</label><br>
-        <input id="registrationNumber" placeholder="Enter registration number"><br><br>
-        
-        <label>Tax ID / GST / VAT Number:</label><br>
-        <input id="taxId" placeholder="Enter tax ID"><br><br>
-        
-        <label>Key Decision-Makers:</label><br>
-        <textarea id="decisionMakers" placeholder="CEO, HR Head, etc."></textarea><br><br>
-        
-        <label>Branch / Office Locations:</label><br>
-        <textarea id="branchLocations" placeholder="List branch locations"></textarea><br><br>
-        
-        <label>Business License or Certification Numbers:</label><br>
-        <input id="licenses" placeholder="Enter license/cert numbers"><br><br>
-        
-        <label>Annual Revenue Range:</label><br>
-        <input id="revenue" placeholder="Enter revenue range"><br><br>
-        
-        <label>Funding Stage:</label><br>
-        <input id="funding" placeholder="Bootstrapped, Seed, Series A, etc."><br><br>
-        
-        <hr>
+        <label>Company Name:</label>
+        <input id="companyName" placeholder="Enter company name">
 
-        <!-- SECTION 3: Competencies & Achievements -->
-        <!--h2>Competencies & Achievements</h2>
-        <label>Core Products / Services Offered:</label><br>
-        <textarea id="productsServices" placeholder="List core offerings"></textarea><br><br>
-        
-        <label>Technology Stack / Tools Used:</label><br>
-        <textarea id="techStack" placeholder="List technologies used"></textarea><br><br>
-        
-        <label>Notable Clients / Partners:</label><br>
-        <textarea id="clientsPartners" placeholder="List notable clients"></textarea><br><br>
-        
-        <label>Case Studies / Major Projects:</label><br>
-        <textarea id="projects" placeholder="Describe major projects"></textarea><br><br>
-        
-        <label>Awards & Recognitions:</label><br>
-        <textarea id="awards" placeholder="List awards"></textarea><br><br>
-        
-        <label>Industry Certifications:</label><br>
-        <textarea id="certifications" placeholder="List certifications (ISO, CMMI, etc.)"></textarea><br><br>
-        
-        <label>CSR (Corporate Social Responsibility) Activities:</label><br>
-        <textarea id="csr" placeholder="List CSR activities"></textarea><br><br-->
-        
-        
+        <label>Industry / Sector:</label>
+        <input id="industry" placeholder="Enter industry">
 
-        <!-- SECTION 4: Culture & Preferences -->
-        <!--h2>Culture & Preferences</h2>
-        <label>Mission Statement:</label><br>
-        <textarea id="mission" placeholder="Enter mission statement"></textarea><br><br>
-        
-        <label>Vision Statement:</label><br>
-        <textarea id="vision" placeholder="Enter vision statement"></textarea><br><br>
-        
-        <label>Company Values:</label><br>
-        <textarea id="values" placeholder="List company values"></textarea><br><br>
-        
-        <label>Work Culture Description:</label><br>
-        <textarea id="workCulture" placeholder="Describe work culture"></textarea><br><br>
-        
-        <label>Employee Benefits & Perks Offered:</label><br>
-        <textarea id="benefits" placeholder="List employee benefits"></textarea><br><br>
-        
-        <label>Hiring Preferences:</label><br>
-        <textarea id="hiringPreferences" placeholder="List skillsets or roles sought"></textarea><br><br>
-        
-        <label>Markets & Regions for Expansion:</label><br>
-        <textarea id="expansionMarkets" placeholder="List markets for expansion"></textarea><br><br>
-        
-        <label>Business Opportunities Sought:</label><br>
-        <textarea id="businessOpportunities" placeholder="List partnership or supplier needs"></textarea><br><br-->
+        <label>Headquarters Address:</label>
+        <textarea id="hqAddress" placeholder="Enter headquarters address"></textarea>
 
-        
+        <label>Year Founded:</label>
+        <input id="founded" type="number" placeholder="Enter year founded">
+
+        <label>Website:</label>
+        <input id="website" placeholder="Enter website URL">
+
+        <label>Contact Email:</label>
+        <input id="contactEmail" type="email" placeholder="Enter contact email">
+
+        <label>Contact Phone:</label>
+        <input id="contactPhone" placeholder="Enter contact phone">
+
+        <label>Password:</label>
+        <input id="password" type="password" placeholder="Enter password">
 
         <!-- Buttons -->
         <button onclick="createCompany()">Create</button>
         <button onclick="backtologin()">Back to login</button>
-        <button onclick="viewCompanyProfile()">View</button><br><br>
+        <button onclick="viewCompanyProfile()">View</button>
 
         <div id="profiles"></div>
     </div>
