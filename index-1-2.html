@@ -3,6 +3,7 @@
     <head></head>
     <body>
         <div id="content_2"></div>
+        <button onclick="backtologin()">Back to login</button>
     </body>
     <script>
   window.onload=function(){
@@ -23,6 +24,10 @@
         <h4>Place of study: ${locstor_getitem_1.place_of_study}</h4>
         <h4>Experience: ${locstor_getitem_1.experience}</h4>
         <h4>Job-role: ${locstor_getitem_1.Job_role}</h4>`;
+}
+function backtologin()
+{
+  window.location.href='index-1-1.html';
 }
     </script>
 </html>

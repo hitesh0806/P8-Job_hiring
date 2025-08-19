@@ -2,24 +2,45 @@
 <html>
     <head></head>
     <body>
+        <div id="welcomenote"></div>
+        <button onclick="profile()" id="profile_btn">My profile</button><br><br>
         <div id="content_2"></div>
-        <input id="inputbtn">
+        <label style="font-weight: bold;">What role are you hiring for?</label><br><br>
+        <input id="inputbtn" placeholder="e.g., frontend, backend, hardware">
         <button onclick="search()">Search</button><br><br>
         <div id="content_3"></div>
+        <button onclick="backtologin()">Log out</button>
     </body>
     <script>
-  window.onload=function(){
-        let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details_2'));
-        document.querySelector('#content_2').innerHTML=
-        `<h2>Hello ${locstor_getitem_1.companyName}, u've come this far, u're doing correct, wait for me to update further</h2>
-        <h4>Company name: ${locstor_getitem_1.companyName}</h4>
+      let main_content= document.querySelector('#content_2');
+      let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details_2'));
+      
+window.onload=function()
+{
+  document.querySelector('#welcomenote').innerHTML=`<h2>Hello ${locstor_getitem_1.companyName}, Ready to hire employees..</h2>`;
+}
+let show=true;
+function profile(){
+  console.log('clicked')
+      if(show){
+        document.querySelector('#profile_btn').innerHTML='Hide profile';
+        main_content.innerHTML=
+        `<h4>Company name: ${locstor_getitem_1.companyName}</h4>
         <h4>Industry: ${locstor_getitem_1.industry}</h4>
-        <h4 style:"font-style:bold">Head quarters: ${locstor_getitem_1.hqAddress}</h4>
+        <h4 style:"font-weight:bold">Head quarters: ${locstor_getitem_1.hqAddress}</h4>
         <h4>Year founded: ${locstor_getitem_1.founded}</h4>
         <h4>Website: ${locstor_getitem_1.website}</h4><br>
         <h4>E-mail: ${locstor_getitem_1.contactEmail}</h4>
         <h4>Contact number: ${locstor_getitem_1.contactPhone}</h4>
-        <h4>Password: ${locstor_getitem_1.Password}</h4>`
+        <h4>Password: ${locstor_getitem_1.Password}</h4>`;
+        show=false;
+      }
+      else
+      {
+        main_content.innerHTML='';
+        document.querySelector('#profile_btn').innerHTML='My profile';
+        show=true;
+      }
 }
 function search()
 {
@@ -28,6 +49,7 @@ function search()
     let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
     let x= document.getElementById('inputbtn');
     let val= x.value;
+    let k=0;
     let found=false;
     let list_1='';
     let list_2='';
@@ -37,14 +59,15 @@ function search()
           {
             list_1=`<button onclick="viewprofile(${j})">${locstor_getitem_2[j].name_}</button><br><br>`;
             list_2+=list_1;
-            content_div.innerHTML=list_2;
+            k++;
+            content_div.innerHTML=`<h3>There are ${k} applicants interested in the ${val} role. Click on their names to view their profiles.<h3>`+list_2;
             found=true;
           }
           
       }
         if(!found)
          {
-            alert('Cannot find');
+            content_div.innerHTML=`<h3>We could not find any applicants for ${val} role.<h3>`+list_2;
          }
 }
 function viewprofile(j)
@@ -65,7 +88,15 @@ function viewprofile(j)
       <h4>University(PG): ${pg_value}</h4>
       <h4>Place of study: ${place_of_study}</h4>
       <h4>Experience: ${experience}</h4>
-      <h4>Job-role: ${Job_role}</h4>`;
+      <h4>Job-role: ${Job_role}</h4>
+      <button onclick='back()'>Back</button><br><br>`;
+}
+function backtologin()
+{
+  window.location.href='index-2-1.html';
+}
+function back(){
+  search();
 }
     </script>
 </html>

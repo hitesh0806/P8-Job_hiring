@@ -56,7 +56,7 @@ function viewCompanyProfile()
     `;
     totprofiles+=profile;
   }
-   content.innerHTML=totprofiles+`<button onclick="back_1()">Back</button>`;
+   content.innerHTML=totprofiles+`<button onclick="back_1()">Back</button><br><br>`;
    console.log(locstor_getitem)
 }
 function showprofile(i)
@@ -72,7 +72,7 @@ function showprofile(i)
     <p>${contactEmail}</p>
     <p>${contactPhone}</p>
     <p>${Password}</p>
-    <button onclick="back_1()">Back</button>
+    <button onclick="back_1()">Back</button><br><br>
     `;
 }
 register_company = () => window.location.href='index-2-1-1.html';
@@ -103,8 +103,13 @@ function login()
 function remove()
 {
   localStorage.removeItem('companyprofiles');
+  alert('Deleted')
 }
 function back_1()
 {
   window.location.href='index-2-1-1.html';
+}
+function backtologin()
+{
+  window.location.href='index-2-1.html';
 }

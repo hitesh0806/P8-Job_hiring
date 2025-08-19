@@ -74,7 +74,7 @@ const educational_qualification = edu_qul_1 ? edu_qul_1 : '';
 const board_10_value = board_1 ? board_1.value : '';
 const board_12_value = board_2 ? board_2.value : '';
 const ug_value = board_3 ? board_3.value : '';
-const pg_value = board_4 ? board_4.value : '';  
+const pg_value = board_4 ? board_4.value : '--';  
 const place_of_study = p_o_s ? p_o_s.value : '';
 const experience = exp ? exp : '';
 const Role = role ? role : '';
@@ -100,7 +100,7 @@ for(i=0; i<locstor_getitem.length; i++)
             divcontent+=html;
         }
 localStorage.setItem('profiles',JSON.stringify(locstor_getitem));
-console.log(locstor_getitem)
+alert('Details added!!')
 }
 function experience(e)
 {  
@@ -262,7 +262,7 @@ function login()
 function remove()
 {
   localStorage.removeItem('profiles');
-  console.log(locstor_getitem);
+  alert('Deleted')
 }
 
 
