@@ -2,12 +2,24 @@
 <html>
     <head></head>
     <body>
+        <button onclick="profile()" id="profile_btn">My profile</button><br><br>
         <div id="content_2"></div>
+        <button onclick="notifications()">Notifications</button>
+        <div id="noti"></div>
+        <div id="connections"></div>
+        <button onclick="view()">View connections</button><br><br>
+        <div id="comp_details"></div>
         <button onclick="backtologin()">Back to login</button>
     </body>
     <script>
-  window.onload=function(){
+        let connections=0;
         let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details'));
+        let x=locstor_getitem_1;
+        let msg=JSON.parse(localStorage.getItem(x));
+        let connect=false;
+        let connected_comp=JSON.parse(localStorage.getItem('connected_comp'))||[];
+  function profile(){
+        console.log(locstor_getitem_1)
         document.querySelector('#content_2').innerHTML=
         `<h2>Hello ${locstor_getitem_1.name_}, u've come this far, u're doing correct, wait for me to update further</h2>
         <h4>Name: ${locstor_getitem_1.name_}</h4>
@@ -23,7 +35,70 @@
         <h4>University(PG): ${locstor_getitem_1.pg_value}</h4>
         <h4>Place of study: ${locstor_getitem_1.place_of_study}</h4>
         <h4>Experience: ${locstor_getitem_1.experience}</h4>
-        <h4>Job-role: ${locstor_getitem_1.Job_role}</h4>`;
+        <h4>Job-role: ${locstor_getitem_1.Job_role}</h4>
+        <h4>Specific-Number: ${locstor_getitem_1.user_number}</h4>`;
+}
+function notifications()
+{
+    if(msg){
+    //console.log(x);
+    //console.log(msg);
+    //console.log(msg.offer);
+    //console.log(msg.locstor_getitem_1);
+    document.querySelector('#noti').innerHTML=msg.offer;
+    }
+    else{
+        alert('No notifications!!!')
+    }
+}
+window.onload=function()
+{
+    update();
+}
+function update()
+{
+document.querySelector('#connections').innerHTML=`<h4>Connections: ${connections}</h4>`;
+connected_comp=JSON.parse(localStorage.getItem('connected_comp'));
+}
+function yes()
+{
+    //console.log(x);
+    connections++;
+    connected_comp.push(msg.locstor_getitem_1)
+    console.log(connected_comp);
+    localStorage.setItem('connected_comp',JSON.stringify(connected_comp));
+    console.log(JSON.parse(localStorage.getItem('connected_comp')));
+    document.querySelector('#noti').innerHTML='';
+    update();
+    connect=true;
+    localStorage.removeItem(x);
+}
+function view()
+{
+  let companies=``;
+  let tot_comp='';
+  //content.innerHTML='';
+    for(i=0; i<connected_comp.length; i++)
+  {
+    companies=`
+    <button onclick="show_companies(${i})">Company ${i+1}</button><br><br>
+    `;
+    tot_comp+=companies;
+  }
+   document.querySelector('#comp_details').innerHTML=tot_comp+`<button onclick="back_1()">Back</button>`;
+   //console.log(locstor_getitem)
+}
+function show_companies(i){
+    document.querySelector('#comp_details').innerHTML=`
+      <h4>Company name: ${connected_comp[i].companyName}</h4>
+        <h4>Industry: ${connected_comp[i].industry}</h4>
+        <h4 style:"font-weight:bold">Head quarters: ${connected_comp[i].hqAddress}</h4>
+        <h4>Year founded: ${connected_comp[i].founded}</h4>
+        <h4>Website: ${connected_comp[i].website}</h4><br>
+        <h4>E-mail: ${connected_comp[i].contactEmail}</h4>
+        <h4>Contact number: ${connected_comp[i].contactPhone}</h4>
+        <h4>Password: ${connected_comp[i].Password}</h4>
+  `;
 }
 function backtologin()
 {

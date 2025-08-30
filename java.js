@@ -172,6 +172,7 @@ function jobrole(r)
 }
 function create()
 {
+  const spec_numb=Math.random();
     locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
           const inputelement_1=document.querySelector('#name');
           const inputelement_2=document.querySelector('#number');
@@ -184,6 +185,7 @@ function create()
           const inputvalue_4=inputelement_4.value;
           const inputvalue_5=inputelement_5.value;
           locstor_getitem.push({
+            user_number:String(spec_numb),
             name_:inputvalue_1,
             number:inputvalue_2,
             address:inputvalue_3,
@@ -195,9 +197,9 @@ function create()
           let divcontent='';
           for(i=0; i<locstor_getitem.length; i++)
         {
-            const {name_,number,address,e_mail,password}=locstor_getitem[i];
+            const {name_,number,address,e_mail,password,user_number}=locstor_getitem[i];
             const html=`
-            <p>${name_}</p><p>${number}</p><p>${address}</p><p>${e_mail}</p><p>${password}</p>
+            <p>${name_}</p><p>${number}</p><p>${address}</p><p>${e_mail}</p><p>${password}</p><p>${user_number}</p>
             `;
             divcontent+=html;
         }
@@ -206,7 +208,7 @@ function create()
       alert('profile created!!!');
 }
 function viewprofile()
-{ 
+{ console.log(locstor_getitem);
   locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
   let profile=``;
   let totprofiles='';
@@ -224,13 +226,14 @@ function viewprofile()
 function showprofile(i)
 {
     locstor_getitem=JSON.parse(localStorage.getItem('profiles'))||[];
-    const {name_,number,address,e_mail,password}=locstor_getitem[i];
+    const {name_,number,address,e_mail,password,user_number}=locstor_getitem[i];
     content.innerHTML=`
     <p>${name_}</p>
     <p>${number}</p>
     <p>${address}</p>
     <p>${e_mail}</p>
-    <p>${password}</p><br>
+    <p>${password}</p>
+    <p>${user_number}</p><br>
     <button onclick="back_1()">Back</button>
     `;
 }
@@ -249,7 +252,9 @@ function login()
   {
     temp_arr=locstor_getitem[i];
     localStorage.setItem('logged_in_details',JSON.stringify(temp_arr));
+    console.log(JSON.stringify(temp_arr))
     window.location.href='index-1-2.html';
+    console.log(temp_arr)
     found=true;
     break;
   }

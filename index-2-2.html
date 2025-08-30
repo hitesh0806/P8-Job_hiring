@@ -9,12 +9,13 @@
         <input id="inputbtn" placeholder="e.g., frontend, backend, hardware">
         <button onclick="search()">Search</button><br><br>
         <div id="content_3"></div>
+        <div id="content_4"></div><br>
         <button onclick="backtologin()">Log out</button>
     </body>
     <script>
       let main_content= document.querySelector('#content_2');
       let locstor_getitem_1=JSON.parse(localStorage.getItem('logged_in_details_2'));
-      
+      let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
 window.onload=function()
 {
   document.querySelector('#welcomenote').innerHTML=`<h2>Hello ${locstor_getitem_1.companyName}, Ready to hire employees..</h2>`;
@@ -46,7 +47,7 @@ function search()
 {
     
     let content_div=document.querySelector('#content_3');
-    let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
+    //let locstor_getitem_2=JSON.parse(localStorage.getItem('profiles'));
     let x= document.getElementById('inputbtn');
     let val= x.value;
     let k=0;
@@ -72,8 +73,8 @@ function search()
 }
 function viewprofile(j)
 {
-    let locstor_getitem_1=JSON.parse(localStorage.getItem('profiles'));
-    const {name_,number,address,e_mail,password,educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role}=locstor_getitem_1[j];
+    
+    const {name_,number,address,e_mail,password,educational_qualification,board_10_value,board_12_value,ug_value,pg_value,place_of_study,experience,Job_role,user_number}=locstor_getitem_2[j];
     document.querySelector('#content_3').innerHTML=`
       <h4>Name: ${name_}</h4>
       <h4>Phone no.: ${number}</h4>
@@ -89,8 +90,29 @@ function viewprofile(j)
       <h4>Place of study: ${place_of_study}</h4>
       <h4>Experience: ${experience}</h4>
       <h4>Job-role: ${Job_role}</h4>
+      <h4>User-number: ${user_number}</h4>
+      <button onclick='connect(${j})'>Connect</button><br><br>
       <button onclick='back()'>Back</button><br><br>`;
+
 }
+/*function connect(j)
+{
+    
+    document.querySelector('#content_4').innerHTML=`<input id='msg'></input><br>
+    <button onclick='send(${j})'>send</button>`;
+}*/
+function connect(j){
+      let y=locstor_getitem_2[j];
+    let msg={
+    offer:`<h4>Would u like to connect with ${locstor_getitem_1.companyName}?</h4>
+    <button onclick="yes()">Yes</button>
+    <button onclick="no()">No</button>`,
+    locstor_getitem_1,
+    }
+    localStorage.setItem(y,JSON.stringify(msg));
+    console.log(msg);
+    console.log(y)
+    alert('sent!!!')}
 function backtologin()
 {
   window.location.href='index-2-1.html';
